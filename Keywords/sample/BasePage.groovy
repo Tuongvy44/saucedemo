@@ -18,7 +18,6 @@ public class BasePage {
 		List<WebElement> nameText = driver.findElements(By.cssSelector(locatorString));
 		for (WebElement item : nameText) {
 			UIList.add(item.getText());
-			
 		}
 		ArrayList<String> sortList = new ArrayList<String>();
 		for (String name : UIList) {
@@ -27,7 +26,7 @@ public class BasePage {
 		Collections.sort(sortList);
 		return sortList.equals(UIList);
 	}
-	
+
 	@Keyword
 	def static boolean isSortByNumberAscending(WebDriver driver, String locatorString) {
 		ArrayList<Float> UIList = new ArrayList<Float>();
@@ -42,7 +41,7 @@ public class BasePage {
 		Collections.sort(sortList);
 		return sortList.equals(UIList);
 	}
-	
+
 	@Keyword
 	def static boolean isSortByTextDescending(WebDriver driver, String locatorString) {
 		ArrayList<String> UIList = new ArrayList<String>();
@@ -56,10 +55,10 @@ public class BasePage {
 		}
 		Collections.sort(sortList);
 		Collections.reverse(sortList);
-		
+
 		return sortList.equals(UIList);
 	}
-	
+
 	@Keyword
 	def static boolean isSortByNumberDescending(WebDriver driver, String locatorString) {
 		ArrayList<Float> UIList = new ArrayList<Float>();
@@ -73,10 +72,10 @@ public class BasePage {
 		}
 		Collections.sort(sortList);
 		Collections.reverse(sortList);
-		
+
 		return sortList.equals(UIList);
 	}
-	
+
 	@Keyword
 	def static void switchToNextTab(WebDriver driver, String parentId) {
 		Set<String> allWindow = driver.getWindowHandles();
@@ -85,12 +84,10 @@ public class BasePage {
 			if (!runWindow.equals(parentId)) {
 				driver.switchTo().window(runWindow);
 				break;
-
 			}
 		}
-
 	}
-	
+
 	@Keyword
 	def static boolean closeAllWindowWithoutParent(WebDriver driver, String parentId) {
 		Set<String> allWindow = driver.getWindowHandles();
@@ -100,16 +97,14 @@ public class BasePage {
 				driver.switchTo().window(runWindow);
 				driver.close();
 			}
-
 		}
 		driver.switchTo().window(parentId);
 		if (driver.getWindowHandles().size() == 1)
 			return true;
 		else
 			return false;
-
 	}
-	
+
 	@Keyword
 	def static String getCurrentTimeFormat() {
 		def date = new Date()
@@ -117,7 +112,7 @@ public class BasePage {
 		String dates = sdf.format(date)
 		return dates
 	}
-	
+
 	@Keyword
 	Long convertDateTime2Number(String dateTimeText) {
 		dateTimeText = dateTimeText.replace("-", "")
